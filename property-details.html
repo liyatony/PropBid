@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Details - PropBid</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+        }
+        .navbar {
+            background-color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #3498db;
+        }
+        .nav-links a {
+            margin-left: 1rem;
+            text-decoration: none;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .property-details {
+            display: flex;
+            gap: 2rem;
+        }
+        .property-images {
+            flex: 2;
+        }
+        .property-images img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .property-info {
+            flex: 1;
+        }
+        .bidding-section {
+            margin-top: 2rem;
+            background-color: white;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        .bid-form input {
+            width: 100%;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+        }
+        .bid-form button {
+            width: 100%;
+            padding: 0.5rem;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">PropBid</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="listings.html">Listings</a>
+            <a href="login.html">Sign In</a>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="property-details">
+            <div class="property-images">
+                <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80" alt="Property">
+            </div>
+            <div class="property-info">
+                <h1>Modern House in Downtown</h1>
+                <p>Price: $500,000</p>
+                <p>3 bedrooms | 2 bathrooms | 2000 sqft</p>
+                <p>Location: 123 Main St, Anytown, USA</p>
+                <h2>Features</h2>
+                <ul>
+                    <li>Open floor plan</li>
+                    <li>Hardwood floors</li>
+                    <li>Gourmet kitchen</li>
+                    <li>Large backyard</li>
+                </ul>
+            </div>
+        </div>
+        <div class="bidding-section">
+            <h2>Place a Bid</h2>
+            <form class="bid-form" id="bid-form">
+                <input type="number" id="bid-amount" placeholder="Enter your bid amount" required>
+                <button type="submit">Place Bid</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="firebase-config.js"></script>
+    <script>
+        document.getElementById('bid-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const bidAmount = document.getElementById('bid-amount').value;
+            // Here you would typically send the bid to your backend or Firestore
+            alert(`Bid of $${bidAmount} placed successfully!`);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PropBid</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            height: 100%;
+        }
+        .navbar {
+            background-color: #333;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-weight: bold;
+            font-size: 24px;
+            color: #2196F3;
+        }
+        .nav-links a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: white;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        input[type="text"], input[type="email"], input[type="tel"], input[type="number"], select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .search-bar {
+            position: relative;
+        }
+        .search-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+        }
+        .hint {
+            text-align: center;
+            color: #2196F3;
+            margin-top: 15px;
+        }
+        button {
+            background-color: #2196F3;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .options {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .option {
+            padding: 15px;
+            border: 2px solid #2196F3;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            color: #2196F3;
+            font-weight: bold;
+            flex: 1;
+        }
+        .option:hover {
+            background-color: #2196F3;
+            color: white;
+        }
+        .back-link {
+            color: #888;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .crypto-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">PropBid | 1 PRO = 0.937$</div>
+        <div class="nav-links">
+            <a href="#" onclick="showPage('options')">Buy</a>
+            <a href="#" onclick="showPage('options')">Sell</a>
+            <a href="#" onclick="showPage('signup')">Sign In</a>
+        </div>
+    </nav>
+
+    <div id="options" class="container">
+        <h1>How may we help?</h1>
+        <p>You may select multiple options.</p>
+        <div class="options">
+            <div class="option" onclick="handleOptionClick('exposure')">EXPOSURE TO PROPBID COMMUNITY</div>
+            <div class="option" onclick="handleOptionClick('nft')">MINT PROPERTY AS NFT</div>
+        </div>
+        <button onclick="showPage('signup')">NEXT</button>
+    </div>
+
+    <div id="signup" class="container" style="display:none;">
+        <a href="#" class="back-link" onclick="showPage('options')">← Go back</a>
+        <h1>Almost there!</h1>
+        <input type="text" placeholder="First name *">
+        <input type="text" placeholder="Last name *">
+        <input type="email" placeholder="Email address *">
+        <div class="phone-input">
+            <input type="tel" placeholder="Phone number *">
+        </div>
+        <button onclick="showPage('search')">NEXT</button>
+    </div>
+
+    <div id="search" class="container" style="display:none;">
+        <a href="#" class="back-link" onclick="showPage('signup')">← Go back</a>
+        <h1>Where is the property located?</h1>
+        <div class="search-bar">
+            <input type="text" id="location" placeholder="Location">
+            <span class="search-icon">🔍</span>
+        </div>
+        <p class="hint">No luck? Try searching by MLS#</p>
+        <button onclick="showPage('evaluation')">NEXT</button>
+    </div>
+
+    <div id="evaluation" class="container" style="display:none;">
+        <h1>Evaluate Your Property</h1>
+        <p>Pre-list your property, get it evaluated by agents with a ton of experience & choose the right agent who will navigate you through the process.</p>
+        
+        <input type="text" id="property-address" placeholder="Property Address">
+        <input type="email" id="email" placeholder="Email *">
+        
+        <button onclick="showPage('details')">NEXT</button>
+    </div>
+
+    <div id="details" class="container" style="display:none;">
+        <h1>Property Details</h1>
+        
+        <input type="text" id="neighborhood" placeholder="Neighborhood">
+        
+        <select id="property-type">
+            <option>Select Property Type</option>
+            <option>Single family home</option>
+            <option>Apartment</option>
+            <option>Commercial</option>
+        </select>
+        
+        <div class="crypto-checkbox">
+            <input type="checkbox" id="nft">
+            <label for="nft">I want to explore selling as an NFT</label>
+        </div>
+        
+        <div class="crypto-checkbox">
+            <input type="checkbox" id="crypto-currencies">
+            <label for="crypto-currencies">I will also accept crypto currencies</label>
+        </div>
+        
+        <input type="number" id="bedrooms" placeholder="Bedrooms">
+        <input type="number" id="bathrooms" placeholder="Bathrooms">
+        <input type="text" id="size" placeholder="Size (sq ft)">
+        <input type="text" id="year-built" placeholder="Year Built">
+        <input type="text" id="floors" placeholder="Floors">
+        
+        <textarea id="description" placeholder="Describe the property"></textarea>
+        
+        <button onclick="submitDetails()">SUBMIT</button>
+    </div>
+
+    <div class="footer">
+        &copy; 2024 PropBid
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll('.container').forEach(container => {
+                container.style.display = 'none';
+            });
+            document.getElementById(pageId).style.display = 'block';
+        }
+
+        function handleOptionClick(option) {
+            if (option === 'exposure' || option === 'nft') {
+                showPage('signup');
+            }
+        }
+
+        function submitDetails() {
+            // Here you would typically handle the form submission
+            // For now, we'll just show an alert
+            alert("Property details submitted successfully!");
+            showPage('options');
+        }
+    </script>
+</body>
+</html>
